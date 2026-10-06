@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="探索台灣山林之美，加入我們的登山健行行程，享受自然、挑戰自我。" />
+  <title>山野同行｜登山健行行程</title>
+
+  <style>
+    :root {
+      --green-dark: #173f35;
+      --green: #2f6b55;
+      --green-light: #e7f1eb;
+      --orange: #e88b4a;
+      --cream: #f8f5ed;
+      --white: #ffffff;
+      --text: #26332f;
+      --muted: #68756f;
+      --shadow: 0 12px 35px rgba(23, 63, 53, 0.12);
+      --radius: 20px;
+      --max-width: 1180px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family:
+        "Noto Sans TC",
+        "PingFang TC",
+        "Microsoft JhengHei",
+        Arial,
+        sans-serif;
+      color: var(--text);
+      background: var(--cream);
+      line-height: 1.7;
+    }
+
+    img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    /* ===== Navigation ===== */
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(23, 63, 53, 0.08);
+    }
+
+    .nav-inner {
+      max-width: var(--max-width);
+      margin: auto;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      color: var(--green-dark);
+      font-size: 1.2rem;
+    }
+
+    .logo-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: var(--green-dark);
+      color: white;
+      display: grid;
+      place-items: center;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      transition: 0.25s;
+    }
+
+    .nav-links a:hover {
+      color: var(--orange);
+    }
+
+    .nav-cta {
+      background: var(--orange);
+      color: white !important;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-weight: 700;
+    }
+
+    .menu-toggle {
+      display: none;
+      border: 0;
+      background: transparent;
+      font-size: 1.6rem;
+      cursor: pointer;
+    }
+
+    /* ===== Common ===== */
+
+    .container {
+      max-width: var(--max-width);
+      margin: auto;
+      padding: 0 24px;
+    }
+
+    section {
+      padding: 100px 0;
+    }
+
+    .section-heading {
+      max-width: 700px;
+      margin: 0 auto 50px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 12px;
+      color: var(--orange);
+      font-size: 0.9rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.25;
+      color: var(--green-dark);
+      margin-bottom: 15px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+    }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 24px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-weight: 800;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .btn-primary {
+      background: var(--orange);
+      color: white;
+      box-shadow: 0 10px 25px rgba(232, 139, 74, 0.3);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--green-dark);
+      border: 1px solid rgba(23, 63, 53, 0.15);
+    }
+
+    /* ===== Hero ===== */
+
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      color: white;
+      overflow: hidden;
+      background:
+        linear-gradient(
+          90deg,
+          rgba(10, 38, 32, 0.86) 0%,
+          rgba(10, 38, 32, 0.58) 45%,
+          rgba(10, 38, 32, 0.18) 100%
+        ),
+        url("https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2000&q=85")
+        center/cover;
+    }
+
+    .hero-content {
+      max-width: 760px;
+      padding-top: 80px;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      padding: 7px 14px;
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(8px);
+      margin-bottom: 20px;
+      font-size: 0.9rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 7vw, 6rem);
+      line-height: 1.05;
+      letter-spacing: -2px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 span {
+      color: #ffd0a7;
+    }
+
+    .hero p {
+      max-width: 620px;
+      font-size: 1.15rem;
+      color: rgba(255,255,255,0.88);
+      margin-bottom: 30px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .hero-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-top: 40px;
+    }
+
+    .hero-info-item {
+      padding: 13px 18px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .hero-info-item strong {
+      display: block;
+      font-size: 1.05rem;
+    }
+
+    .hero-info-item span {
+      font-size: 0.8rem;
+      opacity: 0.75;
+    }
+
+    /* ===== Intro ===== */
+
+    .intro {
+      background: white;
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .intro-image {
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+
+    .intro-image img {
+      height: 550px;
+    }
+
+    .image-label {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(10px);
+      padding: 16px 20px;
+      border-radius: 16px;
+    }
+
+    .intro-copy h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      color: var(--green-dark);
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .intro-copy p {
+      color: var(--muted);
+      margin-bottom: 25px;
+    }
+
+    .check-list {
+      list-style: none;
+      display: grid;
+      gap: 13px;
+      margin-bottom: 30px;
+    }
+
+    .check-list li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .check {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--green-light);
+      color: var(--green);
+      display: grid;
+      place-items: center;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    /* ===== Itinerary ===== */
+
+    .itinerary {
+      background: var(--cream);
+    }
+
+    .route-card {
+      background: white;
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+    }
+
+    .route-image img {
+      height: 100%;
+      min-height: 550px;
+    }
+
+    .route-content {
+      padding: 50px;
+    }
+
+    .route-content h3 {
+      color: var(--green-dark);
+      font-size: 2rem;
+      margin-bottom: 15px;
+    }
+
+    .route-intro {
+      color: var(--muted);
+      margin-bottom: 30px;
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 28px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 6px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: #dce7e1;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-bottom: 28px;
+    }
+
+    .timeline-item:last-child {
+      padding-bottom: 0;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -28px;
+      top: 5px;
+      width: 14px;
+      height: 14px;
+      background: var(--orange);
+      border: 3px solid white;
+      border-radius: 50%;
+      box-shadow: 0 0 0 2px #f4c29f;
+    }
+
+    .timeline-time {
+      color: var(--orange);
+      font-size: 0.85rem;
+      font-weight: 800;
+      margin-bottom: 3px;
+    }
+
+    .timeline-item h4 {
+      color: var(--green-dark);
+      margin-bottom: 3px;
+    }
+
+    .timeline-item p {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    /* ===== Features ===== */
+
+    .features {
+      background: white;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .feature-card {
+      padding: 32px;
+      border-radius: var(--radius);
+      background: #f8faf8;
+      border: 1px solid #e8eee9;
+      transition: 0.3s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-7px);
+      box-shadow: var(--shadow);
+    }
+
+    .feature-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: var(--green-light);
+      font-size: 1.6rem;
+      margin-bottom: 22px;
+    }
+
+    .feature-card h3 {
+      color: var(--green-dark);
+      margin-bottom: 10px;
+    }
+
+    .feature-card p {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    /* ===== Gallery ===== */
+
+    .gallery {
+      background: var(--green-dark);
+      color: white;
+    }
+
+    .gallery .section-heading h2 {
+      color: white;
+    }
+
+    .gallery .section-heading p {
+      color: rgba(255,255,255,0.7);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr 0.7fr;
+      grid-template-rows: 250px 250px;
+      gap: 14px;
+    }
+
+    .gallery-item {
+      border-radius: 18px;
+      overflow: hidden;
+    }
+
+    .gallery-item:first-child {
+      grid-row: span 2;
+    }
+
+    .gallery-item img {
+      height: 100%;
+      transition: transform 0.5s;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.06);
+    }
+
+    /* ===== Gear ===== */
+
+    .gear {
+      background: var(--cream);
+    }
+
+    .gear-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .gear-card {
+      background: white;
+      border-radius: 18px;
+      padding: 25px 20px;
+      text-align: center;
+      box-shadow: 0 5px 20px rgba(23,63,53,0.06);
+    }
+
+    .gear-card .icon {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .gear-card h4 {
+      color: var(--green-dark);
+      margin-bottom: 5px;
+    }
+
+    .gear-card p {
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    /* ===== Registration ===== */
+
+    .registration {
+      background: white;
+    }
+
+    .register-box {
+      max-width: 1050px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .register-info {
+      background:
+        linear-gradient(rgba(23,63,53,0.9), rgba(23,63,53,0.9)),
+        url("https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1200&q=80")
+        center/cover;
+      color: white;
+      padding: 50px;
+    }
+
+    .register-info h2 {
+      font-size: 2.3rem;
+      line-height: 1.2;
+      margin-bottom: 18px;
+    }
+
+    .register-info p {
+      color: rgba(255,255,255,0.78);
+      margin-bottom: 28px;
+    }
+
+    .register-list {
+      list-style: none;
+      display: grid;
+      gap: 15px;
+    }
+
+    .register-list li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .form {
+      padding: 50px;
+      background: white;
+    }
+
+    .form h3 {
+      color: var(--green-dark);
+      font-size: 1.7rem;
+      margin-bottom: 25px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .form-group.full {
+      grid-column: 1 / -1;
+    }
+
+    .form label {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--green-dark);
+    }
+
+    .form input,
+    .form select,
+    .form textarea {
+      width: 100%;
+      border: 1px solid #dce4df;
+      border-radius: 12px;
+      padding: 12px 14px;
+      outline: none;
+      background: #fbfcfb;
+      transition: 0.2s;
+    }
+
+    .form textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .form input:focus,
+    .form select:focus,
+    .form textarea:focus {
+      border-color: var(--green);
+      box-shadow: 0 0 0 4px rgba(47,107,85,0.1);
+    }
+
+    .form .btn {
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    /* ===== Footer ===== */
+
+    footer {
+      background: #102e28;
+      color: white;
+      padding: 35px 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .footer-inner p {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.85rem;
+    }
+
+    .social {
+      display: flex;
+      gap: 10px;
+    }
+
+    .social a {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: rgba(255,255,255,0.1);
+    }
+
+    /* ===== Responsive ===== */
+
+    @media (max-width: 900px) {
+      .nav-links {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: white;
+        flex-direction: column;
+        padding: 25px;
+        gap: 18px;
+        box-shadow: 0 15px 25px rgba(0,0,0,0.08);
+        display: none;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .intro-grid,
+      .route-card,
+      .register-box {
+        grid-template-columns: 1fr;
+      }
+
+      .route-image img {
+        min-height: 350px;
+        max-height: 450px;
+      }
+
+      .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .gear-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 260px 200px 200px;
+      }
+
+      .gallery-item:first-child {
+        grid-column: 1 / -1;
+        grid-row: auto;
+      }
+    }
+
+    @media (max-width: 600px) {
+      section {
+        padding: 75px 0;
+      }
+
+      .container {
+        padding: 0 18px;
+      }
+
+      .nav-inner {
+        padding: 13px 18px;
+      }
+
+      .hero {
+        min-height: 850px;
+        background-position: 62% center;
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .hero-info {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero-info-item {
+        padding: 12px;
+      }
+
+      .intro-image img {
+        height: 380px;
+      }
+
+      .route-content,
+      .register-info,
+      .form {
+        padding: 30px 22px;
+      }
+
+      .feature-grid,
+      .gear-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, 230px);
+      }
+
+      .gallery-item:first-child {
+        grid-column: auto;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-group.full {
+        grid-column: auto;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- 導覽列 -->
+  <header class="navbar">
+    <div class="nav-inner">
+      <a href="#" class="logo">
+        <span class="logo-icon">⛰</span>
+        <span>山野同行</span>
+      </a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="開啟選單">
+        ☰
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">行程介紹</a></li>
+        <li><a href="#itinerary">行程安排</a></li>
+        <li><a href="#features">行程特色</a></li>
+        <li><a href="#gear">裝備建議</a></li>
+        <li><a href="#register" class="nav-cta">立即報名</a></li>
+      </ul>
+    </div>
+  </header>
+
+
+  <!-- Hero -->
+  <main>
+
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+
+          <div class="hero-tag">
+            🌿 秋日山林・限定健行團
+          </div>
+
+          <h1>
+            走進山裡，<br />
+            <span>遇見更好的自己。</span>
+          </h1>
+
+          <p>
+            一趟為初中階山友設計的森林健行之旅。
+            從山徑、雲霧到遼闊山景，放慢腳步，
+            用一天時間重新連結自然。
+          </p>
+
+          <div class="hero-actions">
+            <a href="#register" class="btn btn-primary">
+              🥾 立即報名
+            </a>
+
+            <a href="#itinerary" class="btn btn-secondary">
+              查看行程
+            </a>
+          </div>
+
+          <div class="hero-info">
+            <div class="hero-info-item">
+              <strong>10 / 18</strong>
+              <span>活動日期</span>
+            </div>
+
+            <div class="hero-info-item">
+              <strong>約 6 小時</strong>
+              <span>活動時間</span>
+            </div>
+
+            <div class="hero-info-item">
+              <strong>約 8 KM</strong>
+              <span>健行距離</span>
+            </div>
+
+            <div class="hero-info-item">
+              <strong>NT$ 1,980</strong>
+              <span>每人費用</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- 行程介紹 -->
+    <section class="intro" id="about">
+      <div class="container">
+
+        <div class="intro-grid">
+
+          <div class="intro-image">
+            <img
+              src="https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=1200&q=85"
+              alt="山林健行"
+            />
+
+            <div class="image-label">
+              <strong>🌲 森林 × 山稜 × 雲海</strong>
+              <div>適合喜歡自然與輕戶外活動的你</div>
+            </div>
+          </div>
+
+          <div class="intro-copy">
+            <span class="eyebrow">ABOUT THE JOURNEY</span>
+
+            <h2>
+              不只是爬山，<br />
+              而是一場與自己相處的旅行。
+            </h2>
+
+            <p>
+              我們相信登山不只是抵達山頂，而是沿途每一次呼吸、
+              每一次停下腳步，以及和夥伴一起完成挑戰的過程。
+            </p>
+
+            <p>
+              本行程特別安排森林步道、山稜展望與休息時光，
+              讓第一次參加登山活動的朋友也能自在享受山林。
+            </p>
+
+            <ul class="check-list">
+              <li>
+                <span class="check">✓</span>
+                專業領隊帶隊
+              </li>
+
+              <li>
+                <span class="check">✓</span>
+                行前安全說明
+              </li>
+
+              <li>
+                <span class="check">✓</span>
+                小團制活動
+              </li>
+
+              <li>
+                <span class="check">✓</span>
+                提供公共裝備與補給
+              </li>
+            </ul>
+
+            <a href="#register" class="btn btn-primary">
+              我要加入這趟旅程 →
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- 行程 -->
+    <section class="itinerary" id="itinerary">
+      <div class="container">
+
+        <div class="section-heading">
+          <span class="eyebrow">ITINERARY</span>
+          <h2>一天的山林行程</h2>
+          <p>
+            不趕路、不競速，把時間留給沿途的風景。
+          </p>
+        </div>
+
+        <div class="route-card">
+
+          <div class="route-image">
+            <img
+              src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1200&q=85"
+              alt="山脈與登山者"
+            />
+          </div>
+
+          <div class="route-content">
+
+            <h3>雲霧森林・山稜一日健行</h3>
+
+            <p class="route-intro">
+              全程約 8 公里，適合具基本運動習慣的成人，
+              途中安排多次休息與補水時間。
+            </p>
+
+            <div class="timeline">
+
+              <div class="timeline-item">
+                <div class="timeline-time">07:30</div>
+                <h4>集合與行前說明</h4>
+                <p>確認裝備、分組並說明今日路線與安全事項。</p>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-time">08:30</div>
+                <h4>森林步道出發</h4>
+                <p>從林間步道開始暖身，逐漸進入山區。</p>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-time">10:30</div>
+                <h4>山稜休息・拍照</h4>
+                <p>欣賞山景與雲海，享用行動糧與飲水。</p>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-time">12:00</div>
+                <h4>午餐時間</h4>
+                <p>在指定休息區享用午餐，補充體力。</p>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-time">15:00</div>
+                <h4>平安下山</h4>
+                <p>返回登山口，完成今日山林旅程。</p>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- 特色 -->
+    <section class="features" id="features">
+      <div class="container">
+
+        <div class="section-heading">
+          <span class="eyebrow">WHY JOIN US</span>
+          <h2>這趟旅程，有什麼不一樣？</h2>
+          <p>
+            用更舒服、更安全的方式探索山林。
+          </p>
+        </div>
+
+        <div class="feature-grid">
+
+          <article class="feature-card">
+            <div class="feature-icon">🧭</div>
+            <h3>專業領隊</h3>
+            <p>
+              熟悉山域環境與路線狀況，帶領大家安全完成旅程。
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">👣</div>
+            <h3>小團健行</h3>
+            <p>
+              控制團隊人數，讓領隊更能照顧每位參與者。
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">🌄</div>
+            <h3>精選景點</h3>
+            <p>
+              精心安排森林、山稜與展望點，沿途都有值得停留的風景。
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">🍙</div>
+            <h3>補給支援</h3>
+            <p>
+              提供基本行動糧與公共飲水，減少第一次登山的準備負擔。
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">🛡️</div>
+            <h3>安全優先</h3>
+            <p>
+              出發前提供行前說明，並依天候與現場狀況彈性調整路線。
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">📷</div>
+            <h3>留下回憶</h3>
+            <p>
+              旅途中捕捉山林風景與團隊時光，把這次登山變成值得收藏的回憶。
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Gallery -->
+    <section class="gallery">
+      <div class="container">
+
+        <div class="section-heading">
+          <span class="eyebrow">MOUNTAIN MOMENTS</span>
+          <h2>把風景，留在記憶裡。</h2>
+          <p>
+            山不會一直等你，但每一次出發都值得。
+          </p>
+        </div>
+
+        <div class="gallery-grid">
+
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=85"
+              alt="山脈風景"
+            />
+          </div>
+
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=900&q=85"
+              alt="登山者"
+            />
+          </div>
+
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=85"
+              alt="山景"
+            />
+          </div>
+
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=900&q=85"
+              alt="森林"
+            />
+          </div>
+
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1464278533981-50106e6176b1?auto=format&fit=crop&w=900&q=85"
+              alt="山林步道"
+            />
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- 裝備 -->
+    <section class="gear" id="gear">
+      <div class="container">
+
+        <div class="section-heading">
+          <span class="eyebrow">GEAR GUIDE</span>
+          <h2>登山裝備建議</h2>
+          <p>
+            不需要帶上整個家，準備剛剛好的裝備即可。
+          </p>
+        </div>
+
+        <div class="gear-grid">
+
+          <div class="gear-card">
+            <div class="icon">🥾</div>
+            <h4>登山鞋</h4>
+            <p>建議穿著具止滑能力的健行鞋。</p>
+          </div>
+
+          <div class="gear-card">
+            <div class="icon">🎒</div>
+            <h4>登山背包</h4>
+            <p>建議 20～30L，方便攜帶個人裝備。</p>
+          </div>
+
+          <div class="gear-card">
+            <div class="icon">💧</div>
+            <h4>飲用水</h4>
+            <p>建議至少準備 1.5～2 公升飲水。</p>
+          </div>
+
+          <div class="gear-card">
+            <div class="icon">🧥</div>
+            <h4>防風外套</h4>
+            <p>山區天候變化大，建議攜帶輕量外套。</p>
+          </div>
+
+          <div class="gear-card">
+            <div class="icon">🧢</div>
+            <h4>遮陽用品</h4>
+            <p>帽子、防曬乳與太陽眼鏡皆可準備。</p>
+          </div>
+
+          <div class="gear-card">
+            <div class="icon">🔦</div>
+            <h4>頭燈</h4>
+            <p>即使預計白天下山，也建議攜帶備用。</p>
+          </div>
+
+          <div class="gear-card">
+            <div class="icon">🍫</div>
+            <h4>行動糧</h4>
+            <p>準備能量棒、巧克力或堅果補充體力。</p>
+          </div>
+
+          <div class="gear-card">
+            <div class="icon">📱</div>
+            <h4>手機與行動電源</h4>
+            <p>保持通訊與記錄旅途的重要工具。</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- 報名 -->
+    <section class="registration" id="register">
+      <div class="container">
+
+        <div class="register-box">
+
+          <div class="register-info">
+            <span class="eyebrow">JOIN THE JOURNEY</span>
+
+            <h2>
+              準備好了嗎？<br />
+              一起上山吧。
+            </h2>
+
+            <p>
+              名額有限，完成下方表單後，
+              我們將與你確認報名資訊。
+            </p>
+
+            <ul class="register-list">
+              <li>
+                <span>✓</span>
+                <span>活動費用：NT$ 1,980／人</span>
+              </li>
+
+              <li>
+                <span>✓</span>
+                <span>活動人數：限額 20 人</span>
+              </li>
+
+              <li>
+                <span>✓</span>
+                <span>適合：18 歲以上成人</span>
+              </li>
+
+              <li>
+                <span>✓</span>
+                <span>遇重大天候將視情況延期</span>
+              </li>
+            </ul>
+          </div>
+
+
+          <form class="form" id="registerForm">
+
+            <h3>報名資料</h3>
+
+            <div class="form-grid">
+
+              <div class="form-group">
+                <label for="name">姓名 *</label>
+                <input
+                  id="name"
+                  type="text"
+                  placeholder="請輸入姓名"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="phone">手機 *</label>
+                <input
+                  id="phone"
+                  type="tel"
+                  placeholder="0912-345-678"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email *</label>
+                <input
+                  id="email"
+                  type="email"
+                  placeholder="you@example.com"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="people">參加人數 *</label>
+                <select id="people" required>
+                  <option value="">請選擇</option>
+                  <option>1 人</option>
+                  <option>2 人</option>
+                  <option>3 人</option>
+                  <option>4 人</option>
+                  <option>5 人以上</option>
+                </select>
+              </div>
+
+              <div class="form-group full">
+                <label for="experience">登山經驗</label>
+                <select id="experience">
+                  <option>第一次參加</option>
+                  <option>偶爾健行</option>
+                  <option>有固定登山習慣</option>
+                  <option>具進階登山經驗</option>
+                </select>
+              </div>
+
+              <div class="form-group full">
+                <label for="message">備註</label>
+                <textarea
+                  id="message"
+                  placeholder="例如：飲食需求、同行者資訊或其他需要告知的事項"
+                ></textarea>
+              </div>
+
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+              🌿 送出報名資料
+            </button>
+
+          </form>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-inner">
+
+      <div>
+        <strong>⛰ 山野同行</strong>
+        <p>Explore More · Walk Further · Live Wilder</p>
+      </div>
+
+      <div class="social">
+        <a href="#" aria-label="Instagram">◎</a>
+        <a href="#" aria-label="Facebook">f</a>
+        <a href="#" aria-label="LINE">L</a>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <script>
+    // 手機版選單
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    menuToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+
+    // 點擊導覽後關閉手機選單
+    document.querySelectorAll(".nav-links a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("active");
+      });
+    });
+
+    // 報名表單
+    const form = document.getElementById("registerForm");
+
+    form.addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const name = document.getElementById("name").value;
+
+      alert(
+        `🎉 ${name}，報名資料已送出！\n\n` +
+        `這是網站展示用表單，目前尚未串接後端資料庫。`
+      );
+
+      form.reset();
+    });
+  </script>
+
+</body>
+</html>
